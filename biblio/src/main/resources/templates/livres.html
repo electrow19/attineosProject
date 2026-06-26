@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des livres</title>
+</head>
+<body>
+    <h1>Liste des livres</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Date de parution</th>
+                <th>Synopsis</th>
+                <th>ISBN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="livre : ${livres}">
+                <td th:text="${livre.titre}"></td>
+                <td th:text="${livre.auteur}"></td>
+                <td th:text="${livre.dateParution}"></td>
+                <td th:text="${livre.synopsis}"></td>
+                <td th:text="${livre.isbn}"></td>
+            </tr>
+        </tbody>
+</body>
+</html>
