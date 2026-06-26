@@ -1,0 +1,13 @@
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn package -DskipTests
+
+# run
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar biblioAttineos.jar
+ENTRYPOINT ["java", "-jar", "biblioAttineos.jar"]
+EXPOSE 8080
