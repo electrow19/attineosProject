@@ -1,7 +1,7 @@
 package fr.attineos.biblio.service;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -16,12 +16,12 @@ public class LivreService {
 		this.repository = repository;
 	}
 	
-	public long createLivre(String titre, String auteur, LocalDate DateParution, String synopsis, String isbn) {
-		if (!verifyIsbn(isbn)) {
+	public long createLivre(String titre, String auteur, LocalDate dateParution, String synopsis, String isbn) {
+		if (!verifyIsbn(isbn, "create")) {
 			return -1;
 		}
 		try {
-			Livre saved = repository.save(new Livre(titre, auteur, DateParution, synopsis, isbn));
+			Livre saved = repository.save(new Livre(titre, auteur, dateParution, synopsis, isbn));
 			return saved.getId();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,8 +39,8 @@ public class LivreService {
 		}
 	}
 
-	public long updateLivre(long id, String titre, String auteur, LocalDate DateParution, String synopsis, String isbn) {
-		if (!verifyIsbn(isbn)) {
+	public long updateLivre(long id, String titre, String auteur, LocalDate dateParution, String synopsis, String isbn) {
+		if (!verifyIsbn(isbn, "update")) {
 			return -1;
 		}
 		try {
@@ -50,7 +50,7 @@ public class LivreService {
 			}
 			livre.setTitre(titre);
 			livre.setAuteur(auteur);
-			livre.setDateParution(DateParution);
+			livre.setDateParution(dateParution);
 			livre.setSynopsis(synopsis);
 			livre.setIsbn(isbn);
 			repository.save(livre);
@@ -80,11 +80,11 @@ public class LivreService {
 	}
 
 
-	private boolean verifyIsbn(String isbn) {
+	private boolean verifyIsbn(String isbn, String operation) {
 		if (isbn == null || isbn.length() != 13) {
 			return false;
 		}
-		if (repository.findByIsbn(isbn) != null) {
+		if (!operation.equals("update") && repository.findByIsbn(isbn) != null) {
 			return false;
 		}
 		for (int i = 0; i < isbn.length(); i++) {

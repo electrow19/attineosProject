@@ -3,27 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des livres</title>
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/livres.css}">
 </head>
 <body>
-    <h1>Liste des livres</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Auteur</th>
-                <th>Date de parution</th>
-                <th>Synopsis</th>
-                <th>ISBN</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="livre : ${livres}">
-                <td th:text="${livre.titre}"></td>
-                <td th:text="${livre.auteur}"></td>
-                <td th:text="${livre.dateParution}"></td>
-                <td th:text="${livre.synopsis}"></td>
-                <td th:text="${livre.isbn}"></td>
-            </tr>
-        </tbody>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div id="all">
+        <h2>Ajouter un nouveau livre</h2>
+        <form action="/livres/add" method="post">
+            <input type="text" name="titre" placeholder="Titre" required>
+            <input type="text" name="auteur" placeholder="Auteur" required>
+            <input type="date" name="datePublication" placeholder="Date de parution" required>
+            <input type="text" name="synopsis" placeholder="Synopsis" required>
+            <input type="text" name="isbn" placeholder="ISBN" required>
+            <button type="submit">Ajouter</button>
+        </form>
+        <h2>Liste des livres</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Date de parution</th>
+                    <th>Synopsis</th>
+                    <th>ISBN</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="livre : ${livres}">
+                    <td th:text="${livre.titre}"></td>
+                    <td th:text="${livre.auteur}"></td>
+                    <td th:text="${livre.dateParution}"></td>
+                    <td th:text="${livre.synopsis}"></td>
+                    <td th:text="${livre.isbn}"></td>
+                    <td>
+                        <form th:action="@{/livres/delete/{id}(id=${livre.id})}" method="post">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:href="@{/livres/update/{id}(id=${livre.id})}">
+                            <button type="button">Modifier</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
