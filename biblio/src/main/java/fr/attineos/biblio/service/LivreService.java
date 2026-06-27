@@ -79,6 +79,15 @@ public class LivreService {
 		}
 	}
 
+	public List<Livre> searchLivres(String query) {
+		try {
+			return repository.findByTitreContainingIgnoreCaseOrAuteurContainingIgnoreCase(query, query);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 	private boolean verifyIsbn(String isbn, String operation) {
 		if (isbn == null || isbn.length() != 13) {

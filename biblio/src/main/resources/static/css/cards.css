@@ -1,0 +1,12 @@
+.card-livre {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    display : flex;
+    flex-direction : column;
+    justify-content : space-between;
+    gap : 5px;
+    align-items : center;
+}

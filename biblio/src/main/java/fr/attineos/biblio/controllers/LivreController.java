@@ -35,7 +35,14 @@ class LivreController {
         model.addAttribute("livre", livre);
         return "update-livre";
     }
-    
+
+    @GetMapping("/search")
+    public String searchLivres(@RequestParam String query, Model model) {
+        List<Livre> livres = service.searchLivres(query);
+        model.addAttribute("livres", livres);
+        return "livre-list";
+    }
+
     @PostMapping("/add")
     public String addLivre(@RequestParam String titre, @RequestParam String auteur, @RequestParam LocalDate datePublication, @RequestParam String synopsis, @RequestParam String isbn) {
         service.createLivre(titre, auteur, datePublication, synopsis, isbn);

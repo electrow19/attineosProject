@@ -4,7 +4,12 @@
             <li><a th:href="@{/}">Accueil</a></li>
             <li><a th:href="@{/livres/}">Livres</a></li>
             <li><a th:href="@{/emprunts/}">Emprunts</a></li>
-            <li><a th:href="@{/utilisateurs/}">Mon compte</a></li>
+            <li><a sec:authorize="isAnonymous()" th:href="@{/utilisateur/login}">Se connecter</a></li>
+            <li><a sec:authorize="isAnonymous()" th:href="@{/utilisateur/register}">S'inscrire</a></li>
+            <li ><form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            </li>
         </ul>
     </nav>
 </header>
