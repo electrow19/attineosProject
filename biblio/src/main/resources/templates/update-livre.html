@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <title>Modifier un livre</title>
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
 </body>
     <div th:replace="fragments/navbar :: navbar"></div>
-    <h2>Modifier le livre</h2>
-    <form th:action="@{/livres/update-book/{id}(id=${livre.id})}" method="post">
-        <input type="text" name="titre" th:value="${livre.titre}" required>
-        <input type="text" name="auteur" th:value="${livre.auteur}" required>
-        <input type="date" name="dateParution" th:value="${livre.dateParution}" required>
-        <input type="text" name="synopsis" th:value="${livre.synopsis}" required>
-        <input type="text" name="isbn" th:value="${livre.isbn}" required>
-        <button type="submit">Mettre à jour</button>
-    </form>
+    <div id="all">
+        <h2>Modifier le livre</h2>
+        <form class="form-container" th:action="@{/livres/update-book/{id}(id=${livre.id})}" method="post">
+            <input type="text" name="titre" th:value="${livre.titre}" required>
+            <input type="text" name="auteur" th:value="${livre.auteur}" required>
+            <input type="date" name="dateParution" th:value="${livre.dateParution}" required>
+            <input type="text" name="synopsis" th:value="${livre.synopsis}" required>
+            <input type="text" name="isbn" th:value="${livre.isbn}" required>
+            <button type="submit">Mettre à jour</button>
+        </form>
+    </div>
 </body>
 </html>

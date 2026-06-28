@@ -7,7 +7,7 @@
             <li><a sec:authorize="isAnonymous()" th:href="@{/utilisateur/login}">Se connecter</a></li>
             <li><a sec:authorize="isAnonymous()" th:href="@{/utilisateur/register}">S'inscrire</a></li>
             <li ><form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                    <button type="submit">Déconnexion</button>
+                    <button id="logout-button" type="submit">Déconnexion</button>
                 </form>
             </li>
         </ul>

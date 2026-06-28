@@ -5,12 +5,13 @@
         <title>Inscription</title>
         <link rel="stylesheet" th:href="@{/css/navbar.css}">
         <link rel="stylesheet" th:href="@{/css/register.css}">
+        <link rel="stylesheet" th:href="@{/css/forms.css}">
     </head>
     <body>
         <div th:replace="fragments/navbar :: navbar"></div>
         <div id="all">
             <h2>Inscription</h2>
-            <form th:action="@{/utilisateur/register}" method="post">
+            <form class="form-container" th:action="@{/utilisateur/register}" method="post">
                 <input type="text" name="username" placeholder="Nom d'utilisateur" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Mot de passe" required>

@@ -20,12 +20,14 @@
         <div th:if="${#lists.isEmpty(livres)}">
             <p>Aucun livre trouvé pour la recherche.</p>
         </div>
-        <div class="card-livre" th:else th:each="livre : ${livres}">
-            <p th:text="${livre.titre}"></p>
-            <p th:text="${livre.auteur}"></p>
-            <p th:text="${livre.dateParution}"></p>
-            <p th:text="${livre.synopsis}"></p>
-            <p th:text="${livre.isbn}"></p>
+        <div class="card-list">
+            <div class="card-livre" th:else th:each="livre : ${livres}">
+                <p th:text="${livre.titre}"></p>
+                <p th:text="${livre.auteur}"></p>
+                <p th:text="${livre.dateParution}"></p>
+                <p th:text="${livre.synopsis}"></p>
+                <p th:text="${livre.isbn}"></p>
+            </div>
         </div>
     </div>
 </body>

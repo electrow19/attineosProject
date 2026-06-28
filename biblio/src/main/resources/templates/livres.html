@@ -5,17 +5,19 @@
     <title>Liste des livres</title>
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/livres.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <div id="all">
         <h2>Ajouter un nouveau livre</h2>
-        <form action="/livres/add" method="post">
+        <form class="form-container" action="/livres/add" method="post">
             <input type="text" name="titre" placeholder="Titre" required>
             <input type="text" name="auteur" placeholder="Auteur" required>
             <input type="date" name="datePublication" placeholder="Date de parution" required>
             <input type="text" name="synopsis" placeholder="Synopsis" required>
             <input type="text" name="isbn" placeholder="ISBN" required>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <button type="submit">Ajouter</button>
         </form>
         <h2>Liste des livres</h2>
